@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-void text-steel-100 antialiased;
+    background-color: #07090b;
+    background-image: theme("backgroundImage.noise-radial");
+  }
+
+  ::selection {
+    @apply bg-breach/30 text-white;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme("colors.secure.DEFAULT");
+    outline-offset: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0d10;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #20252a;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #31373d;
+  }
+}
+
+@layer components {
+  /* Cam panel — SCP terminal / kontrol paneli hissi */
+  .glass-panel {
+    @apply relative rounded-lg border border-steel-800/80 bg-void-850/60 shadow-glass-edge backdrop-blur-xl;
+  }
+
+  .glass-panel::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 rounded-lg bg-grid-scan bg-grid opacity-40;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+  }
+
+  .terminal-label {
+    @apply font-mono text-[11px] tracking-[0.2em] text-steel-300;
+  }
+
+  .status-dot {
+    @apply inline-block h-1.5 w-1.5 rounded-full;
+  }
+
+  .clip-corner {
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  }
+}
