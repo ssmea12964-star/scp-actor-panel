@@ -28,7 +28,9 @@ export default async function DashboardPage() {
     }),
   ]);
 
-  const totalReports = await prisma.report.count(admin ? {} : { where: { authorId: session!.user.id } });
+  const totalReports = await prisma.report.count({
+  where: admin ? {} : { authorId: session!.user.id },
+});
   const approvedCount = await prisma.report.count({
     where: { status: "ONAYLANDI", ...(admin ? {} : { authorId: session!.user.id }) },
   });
