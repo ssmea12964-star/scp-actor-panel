@@ -27,11 +27,12 @@ async function fetchMemberRoles(discordUserId: string): Promise<string[]> {
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    DiscordProvider({
-      clientId: process.env.DISCORD_CLIENT_ID!,
-      clientSecret: process.env.DISCORD_CLIENT_SECRET!,
-      authorization: { params: { scope: "identify email guilds guilds.members.read" } },
-      profile(profile) {
+   DiscordProvider({
+  clientId: process.env.DISCORD_CLIENT_ID!,
+  clientSecret: process.env.DISCORD_CLIENT_SECRET!,
+  authorization: { params: { scope: "identify email guilds guilds.members.read" } },
+  allowDangerousEmailAccountLinking: true,
+  profile(profile) {
         return {
           id: profile.id,
           name: profile.global_name ?? profile.username,
