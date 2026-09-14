@@ -73,7 +73,7 @@ model User {
   name          String?
   username      String?
   image         String?
-  email         String?
+  email         String?   @unique
   role          ActorRole @default(DENEME_AKTOR)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
